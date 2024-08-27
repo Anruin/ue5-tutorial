@@ -43,6 +43,12 @@ struct FTutorialVectorStateDataArray {
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, Category = "Tutorial")
+	FVector PlayerLocation = FVector::ZeroVector;
+
+	UPROPERTY(EditAnywhere, Category = "Tutorial")
+	FRotator PlayerRotation = FVector::DownVector.Rotation();
+
+	UPROPERTY(EditAnywhere, Category = "Tutorial")
 	TArray<FTutorialVectorStateData> Array;
 };
 

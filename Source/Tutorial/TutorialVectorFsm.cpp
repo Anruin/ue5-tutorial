@@ -9,6 +9,8 @@ void ATutorialVectorFsm::Initialize() {
 	for (FTutorialVectorStateDataArray& Data : VectorData) {
 		if (UTutorialVectorState* State = NewObject<UTutorialVectorState>(this, UTutorialVectorState::StaticClass()); IsValid(State)) {
 			State->VectorData = Data.Array;
+			State->PlayerLocation = Data.PlayerLocation;
+			State->PlayerRotation = Data.PlayerRotation;
 			TutorialStates.Add(State);
 		}
 	}

@@ -14,6 +14,12 @@ class UTutorialState : public UObject {
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(VisibleInstanceOnly, Category = "Tutorial")
+	FVector PlayerLocation = FVector::ZeroVector;
+
+	UPROPERTY(VisibleInstanceOnly, Category = "Tutorial")
+	FRotator PlayerRotation = FRotator::ZeroRotator;
+
 	virtual void Execute(AActor* WorldContext) {
 	}
 

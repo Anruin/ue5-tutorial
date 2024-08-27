@@ -17,6 +17,22 @@ void UTutorialVectorState::Execute(AActor* WorldContext) {
 		return;
 	}
 
+	auto* PC = World->GetFirstPlayerController();
+	if (!IsValid(PC)) {
+		UE_LOG(LogTemp, Error, TEXT("UTutorialVectorState::Execute: PlayerController is not valid."));
+		return;
+	}
+
+	PC->SetControlRotation(PlayerRotation);
+
+	auto* Pawn = PC->GetPawn();
+	if (!IsValid(Pawn)) {
+		UE_LOG(LogTemp, Error, TEXT("UTutorialVectorState::Execute: Pawn is not valid."));
+		return;
+	}
+
+	Pawn->SetActorLocation(PlayerLocation);
+
 	for (const auto& Data : VectorData) {
 		if (auto* VectorActor = World->SpawnActor<ATutorialVector>(VectorActorClass, Data.StartLocation, FRotator::ZeroRotator)) {
 			VectorActor->StartAnimation(Data.StartLocation, Data.FinishLocation,
