@@ -3,9 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
 
 #include "TutorialVector.generated.h"
 
+class FTutorialTextMetadata;
+class ATutorialSizeText;
 class UArrowComponent;
 
 UCLASS()
@@ -26,6 +29,9 @@ public:
 	FVector InitialScale = FVector::ZeroVector;
 
 	UPROPERTY(VisibleAnywhere, Category = "Tutorial")
+	float Scaling = 1.0f;
+
+	UPROPERTY(VisibleAnywhere, Category = "Tutorial")
 	float Delay = 0.0f;
 
 	UPROPERTY(VisibleAnywhere, Category = "Tutorial")
@@ -40,6 +46,9 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Tutorial")
 	FLinearColor EndColor = FLinearColor::White;
 
+	UPROPERTY(VisibleInstanceOnly, Category = "Tutorial")
+	ATutorialSizeText* SizeText = nullptr;
+
 	ATutorialVector();
 
 	virtual void BeginPlay() override;
@@ -48,5 +57,10 @@ public:
 	void StartAnimation(const FVector& InOrigin, const FVector& InEnd,
 	                    const FVector& InInitialScale, const FVector& InTargetScale,
 	                    const FLinearColor& InStartColor,
-	                    const FLinearColor& InEndColor, float InDelay, float InDuration);
+	                    const FLinearColor& InEndColor, float InDelay, float InDuration, float InScaling);
+
+	TSharedPtr<FTutorialTextMetadata> GetSizeTextMetadata();
+	void AssignSizeText(const TSharedPtr<FTutorialTextMetadata>& InSizeTextMetadata);
+	void UpdateSizeText();
+	void ReleaseSizeText();
 };

@@ -3,6 +3,8 @@
 
 #include "TutorialVectorState.h"
 
+#include "Engine/World.h"
+
 void UTutorialVectorState::Execute(AActor* WorldContext) {
 	Super::Execute(WorldContext);
 
@@ -38,7 +40,7 @@ void UTutorialVectorState::Execute(AActor* WorldContext) {
 			VectorActor->StartAnimation(Data.StartLocation, Data.FinishLocation,
 			                            Data.InitialScale, Data.TargetScale,
 			                            Data.StartColor, Data.EndColor,
-			                            Data.Delay, Data.Duration);
+			                            Data.Delay, Data.Duration, Data.Scaling);
 			Actors.Add(VectorActor);
 		}
 	}

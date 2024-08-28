@@ -8,7 +8,7 @@
 #include "EnhancedInputComponent.h"
 #include "InputAction.h"
 #include "TutorialFsm.h"
-#include "TutorialState.h"
+#include "Engine/LocalPlayer.h"
 
 void ATutorialPlayerController::BeginPlay() {
 	Super::BeginPlay();
@@ -28,7 +28,7 @@ void ATutorialPlayerController::SetupInputComponent() {
 	Super::SetupInputComponent();
 
 	if (auto* EnhancedInputComponent = Cast<UEnhancedInputComponent>(InputComponent); IsValid(EnhancedInputComponent)) {
-		EnhancedInputComponent->BindAction(NextTutorialAction, ETriggerEvent::Triggered, this, &ATutorialPlayerController::OnNextTutorialInputAction);
+		EnhancedInputComponent->BindAction(NextTutorialAction, ETriggerEvent::Completed, this, &ATutorialPlayerController::OnNextTutorialInputAction);
 	}
 }
 

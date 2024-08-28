@@ -26,6 +26,9 @@ struct FTutorialVectorStateData {
 	FVector TargetScale = FVector::OneVector;
 
 	UPROPERTY(EditAnywhere, Category = "Tutorial")
+	float Scaling = 1.0f;
+
+	UPROPERTY(EditAnywhere, Category = "Tutorial")
 	float Delay = 0.0f;
 
 	UPROPERTY(EditAnywhere, Category = "Tutorial")
